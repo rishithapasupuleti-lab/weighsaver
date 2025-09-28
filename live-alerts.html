@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="nav_alerts">Live Alerts - WeighSaver</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="index.html" data-i18n="brand">WeighSaver</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav_home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav_about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html" data-i18n="nav_contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="help.html" data-i18n="nav_help">Help</a></li>
+        <li class="nav-item"><a class="nav-link active" href="live-alerts.html" data-i18n="nav_alerts">Live Alerts</a></li>
+      </ul>
+      <!-- Language Selector -->
+      <select id="languageSelect" class="form-select ms-3">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="te">తెలుగు</option>
+        <option value="kn">ಕನ್ನಡ</option>
+        <option value="ta">தமிழ்</option>
+        <option value="bn">বাংলা</option>
+        <option value="ur">اردو</option>
+      </select>
+    </div>
+  </div>
+</nav>
+
+<div class="container my-5">
+  <h2 class="mb-4" data-i18n="nav_alerts">Live Alerts</h2>
+
+  <!-- Device ID widget -->
+  <div class="device-widget mb-5">
+    <h5 data-i18n="device_check">Check Alerts for Your Device</h5>
+    <input type="text" id="deviceAlertId" class="form-control mb-3" placeholder="Enter Device ID" data-i18n-placeholder="placeholder_device">
+    <button class="btn btn-primary" onclick="showAlert()" data-i18n="button_getAlerts">Get Alerts</button>
+  </div>
+
+  <!-- Alerts Section -->
+  <div id="alertsContainer" class="row g-4"></div>
+</div>
+
+<footer>
+  &copy; 2025 ElectroNauts | <span data-i18n="footer_rights">All Rights Reserved</span>
+</footer>
+
+<script>
+  const dummyAlerts = [
+    { deviceId: 'D1001', type: 'Magnetic Tamper', location: 'Warehouse A', time: '10:35 AM' },
+    { deviceId: 'D1002', type: 'Circuit Change', location: 'Shop B', time: '11:12 AM' },
+    { deviceId: 'D1003', type: 'Unauthorized Access', location: 'Factory C', time: '01:45 PM' },
+  ];
+
+  function showAlert() {
+    const id = document.getElementById("deviceAlertId").value.trim();
+    const container = document.getElementById("alertsContainer");
+    container.innerHTML = '';
+
+    if (!id) {
+      alert("⚠ Please enter a Device ID");
+      return;
+    }
+
+    const filteredAlerts = dummyAlerts.filter(alert => alert.deviceId === id);
+    if (filteredAlerts.length === 0) {
+      container.innerHTML = `<p class="text-center text-muted">No alerts found for Device ${id}.</p>`;
+      return;
+    }
+
+    filteredAlerts.forEach(alert => {
+      const card = document.createElement('div');
+      card.className = 'col-md-4';
+      card.innerHTML = `
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">⚠ ${alert.type}</h5>
+            <p class="card-text"><strong>Device:</strong> ${alert.deviceId}</p>
+            <p class="card-text"><strong>Location:</strong> ${alert.location}</p>
+            <p class="card-text"><strong>Time:</strong> ${alert.time}</p>
+          </div>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+</script>
+
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
