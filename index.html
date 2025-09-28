@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="homeTitle">WeighSaver - Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">   
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="index.html" data-i18n="brand">WeighSaver</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="index.html" data-i18n="home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html" data-i18n="contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="help.html" data-i18n="help">Help</a></li>
+        <li class="nav-item"><a class="nav-link" href="live-alerts.html" data-i18n="liveAlerts">Live Alerts</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Banner -->
+<div class="hero mb-5">
+  <h1 data-i18n="homeHero">Know the True Weight</h1>
+</div>
+
+<div class="container">
+  <!-- Device Widget -->
+  <div class="device-widget mb-5">
+    <h3 data-i18n="checkDeviceHistory">Check Device History</h3>
+    <input type="text" id="deviceIdInput" class="form-control mb-3" placeholder="" data-i18n-placeholder="deviceIdPlaceholder">
+    <button class="btn btn-primary" onclick="redirectToHistory()" data-i18n="searchButton">Search</button>
+  </div>
+
+  <!-- Features -->
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title" data-i18n="featureRealtime">⚡ Real-time Alerts</h5>
+          <p class="card-text" data-i18n="featureRealtimeText">Instant notifications whenever tampering is detected on your devices.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title" data-i18n="featureHistory">📊 Device History</h5>
+          <p class="card-text" data-i18n="featureHistoryText">Track past tampering attempts, maintenance logs, and performance checks.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title" data-i18n="featureSecure">🔒 Secure & Reliable</h5>
+          <p class="card-text" data-i18n="featureSecureText">All your device data is stored securely with restricted access.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer data-i18n="footer">
+  &copy; 2025 ElectroNauts | All Rights Reserved
+</footer>
+
+<script>
+  function redirectToHistory() {
+    const deviceId = document.getElementById('deviceIdInput').value.trim();
+    if (!deviceId) {
+      alert(translations[currentLang].deviceIdAlert);
+      return;
+    }
+    window.location.href = `history.html?deviceId=${deviceId}`;
+  }
+</script>
+
+<script src="translations.js"></script>
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
